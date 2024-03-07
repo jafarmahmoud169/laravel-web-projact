@@ -100,4 +100,8 @@ class prouctsController extends Controller
         $product->delete();
         return redirect()->route('products.index')->with('success', 'product deleted succesfully');
     }
+    public function softdelete($id)
+    {
+        $product=products::find($id)->delete();
+        return redirect()->route('products.index')->with('success', 'product deleted succesfully');    }
 }

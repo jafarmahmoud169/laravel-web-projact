@@ -37,15 +37,15 @@
                         <td>{{ $item->description }}</td>
                         <td>
                             @auth
+                                <a class="btn btn-success"href="{{ route('products.show', $item->id) }}">SHOW</a>
+                                <a class="btn btn-primary" href="{{ route('products.edit', $item->id) }}">EDIT</a>
                                 <form action="{{ route('products.destroy', $item->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">DELETE</button>
+                                    <a class="btn btn-warning" href="{{ route('soft.delete', $item->id) }}">SOFTDELETE</a>
                                 </form>
-                                <a class="btn btn-primary" href="{{ route('products.edit', $item->id) }}">EDIT</a>
-                                <br>
                             @endauth
-                            <a class="btn btn-info"href="{{ route('products.show', $item->id) }}">SHOW</a>
                         </td>
                     </tr>
                 @endforeach
