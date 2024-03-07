@@ -41,8 +41,8 @@ class prouctsController extends Controller
         //dd($request->all());
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
-            'image' => 'required|image|mimes:png,jpg|max:2048'
+            'price' => 'required|numeric',
+            'image' => 'required|image|mimes:png,jpg,jfif|max:2048'
         ]);
         $input = $request->all();
         if ($image = $request->file('image')) {
@@ -78,7 +78,7 @@ class prouctsController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
+            'price' => 'required',
         ]);
         $input = $request->all();
         if ($image = $request->file('image')) {
@@ -103,5 +103,21 @@ class prouctsController extends Controller
     public function softdelete($id)
     {
         $product=products::find($id)->delete();
-        return redirect()->route('products.index')->with('success', 'product deleted succesfully');    }
+        return redirect()->route('products.index')->with('success', 'product deleted succesfully');
+    }
+    public function harddelete($id)
+    {
+        $product=products::onlyTrashed()->where('id',$id)->forceDelete();
+        return redirect()->route('products.trash')->with('success', 'product deleted succesfully');
+    }
+    public function trash()
+    {
+        $product = products::onlyTrashed()->latest()->paginate(5);
+        return view('products.trash', compact('product'));
+    }
+    public function back($id)
+    {
+        $product=products::onlyTrashed()->where('id',$id)->first()->restore();
+        return redirect()->route('products.index')->with('success', 'product backed succesfully');
+    }
 }

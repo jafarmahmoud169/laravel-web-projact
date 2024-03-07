@@ -14,12 +14,17 @@
         <label for="" class="form-label" value="">Name</label>
         <input type="text" class="form-control" name="name" value="{{$product->name}}"/>
     </div>
+    <div class="mb-3">
+        <label for="" class="form-label" value="">Price</label>
+        <input type="text" class="form-control" name="price" value="{{$product->price}}"/>
+    </div>
 <div class="mb-3">
     <label for="" class="form-label">description</label>
     <textarea class="form-control" name="description"  rows="3">{{$product->description}}</textarea>
 </div>
-<img src="images/{{$product->image}}" alt="no">
-<p>{{$product->image}}</p>
+<div class="mb-3">
+    <img src="/images/{{$product->image}}" width="300px">
+    </div>
 <input type="file" class="form-control" name="image"/>
 <br>
 <button type="submit"class="btn btn-primary">Submit</button>

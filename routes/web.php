@@ -13,19 +13,26 @@ use App\Http\Controllers\prouctsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    //return view('welcome');
-    return redirect()->route('products.index');
-});
-Route::get('/home', function () {
-    //return view('welcome');
-    return redirect()->route('products.index');
-});
-//Route::resource('products', prouctsController::class)->middleware('auth')->except(['index', 'show']);
-Route::resource('products', prouctsController::class);
 Auth::routes();
+Route::get('/', function () {return redirect()->route('products.index');});
+Route::get('/home', function () {return redirect()->route('products.index');});
+Route::get('products/softdelete/{id}', [prouctsController::class,'softdelete'])->name('soft.delete');
+Route::get('products/hadrdelete/{id}', [prouctsController::class,'harddelete'])->name('hard.delete');
+Route::get('products/back/{id}', [prouctsController::class,'back'])->name('soft.back');
+Route::get('/products/trash',prouctsController::class . '@trash')->name('products.trash');
+Route::resource('products', prouctsController::class);
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('products/softdelete/{id}', [prouctsController::class,'softdelete'])
-->name('soft.delete');
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+// Route::get('/', prouctsController::class .'@index')->name('products.index');
+// Route::get('/products/create', [prouctsController::class , 'create'])->name('products.create');
+// Route::post('/products', prouctsController::class .'@store')->name('products.store');
+// Route::get('/products/{product}', prouctsController::class .'@show')->name('products.show');
+// Route::get('/products/{product}/edit', prouctsController::class .'@edit')->name('products.edit');
+// Route::put('/products/{product}', prouctsController::class .'@update')->name('products.update');
+// Route::delete('/products/{product}', prouctsController::class .'@destroy')->name('products.destroy');

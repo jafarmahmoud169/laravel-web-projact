@@ -13,6 +13,10 @@
         <label for="" class="form-label">Name</label>
         <input type="text" class="form-control" name="name"/>
     </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Price</label>
+        <input type="text" class="form-control" name="price"/>
+    </div>
 <div class="mb-3">
     <label for="" class="form-label">description</label>
     <textarea class="form-control" name="description"  rows="3"></textarea>

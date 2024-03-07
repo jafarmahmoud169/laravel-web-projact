@@ -12,9 +12,13 @@
                 <h3>name:{{ $product->name }}</h3>
             </div>
             <div class="mb-3">
+                <h3>price:{{ $product->price }}</h3>
+            </div>
+            <div class="mb-3">
                 <p>
                 <h5>description:</h5>{{ $product->description }}</p>
             </div>
             <br>
-            <img src="images/{{ $product->image }}" alt="no" width="200px">
-        @endsection
+            <div class="mb-3">
+                <img src="/images/{{$product->image}}" width="300px">
+                </div>        @endsection

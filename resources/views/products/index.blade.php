@@ -6,6 +6,7 @@
         <div class="row">
             <div class="col align-self-start">
                 <a class="btn btn-primary"href="{{ route('products.create') }}">CREATE</a>
+                <a class="btn btn-primary"href="{{ route('products.trash') }}">TRASH</a>
             </div>
         </div>
     @endauth
@@ -24,8 +25,11 @@
                     <th>ID</th>
                     <th>Image </th>
                     <th>Name</th>
+                    <th>Price</th>
                     <th>Description</th>
+                    @auth
                     <th>Action</th>
+                    @endauth
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -34,19 +38,20 @@
                         <td>{{ $item->id }}</td>
                         <td><img src="images/{{ $item->image }}" alt="" width="200px"></td>
                         <td>{{ $item->name }}</td>
+                        <td>{{ $item->price }}</td>
                         <td>{{ $item->description }}</td>
-                        <td>
                             @auth
+                            <td>
                                 <a class="btn btn-success"href="{{ route('products.show', $item->id) }}">SHOW</a>
                                 <a class="btn btn-primary" href="{{ route('products.edit', $item->id) }}">EDIT</a>
-                                <form action="{{ route('products.destroy', $item->id) }}" method="post">
+                                {{-- <form action="{{ route('products.destroy', $item->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">DELETE</button>
+                                    <button type="submit" class="btn btn-danger">DELETE</button> --}}
                                     <a class="btn btn-warning" href="{{ route('soft.delete', $item->id) }}">SOFTDELETE</a>
                                 </form>
-                            @endauth
                         </td>
+                        @endauth
                     </tr>
                 @endforeach
             </tbody>
