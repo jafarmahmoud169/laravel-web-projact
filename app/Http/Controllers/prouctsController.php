@@ -42,7 +42,8 @@ class prouctsController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required|numeric',
-            'image' => 'required|image|mimes:png,jpg,jfif|max:2048'
+            'image' => 'required|image|'
+            //mimes:png,jpg,jfif|max:2048
         ]);
         $input = $request->all();
         if ($image = $request->file('image')) {

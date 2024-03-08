@@ -20,5 +20,6 @@
             </div>
             <br>
             <div class="mb-3">
-                <img src="/images/{{$product->image}}" width="300px">
-                </div>        @endsection
+                <img src="/images/{{$product->image}}" width="200px">
+                </div>
+                @endsection

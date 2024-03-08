@@ -36,7 +36,7 @@
                 @foreach ($product as $item)
                     <tr class="table-primary">
                         <td>{{ $item->id }}</td>
-                        <td><img src="images/{{ $item->image }}" alt="" width="200px"></td>
+                        <td><div class="mb-3"><img src="/images/{{$item->image}}" width="200px"></div></td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->price }}</td>
                         <td>{{ $item->description }}</td>
