@@ -31,6 +31,6 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="d-flex justify-content-center">{!! $product->links() !!}</div>
+        <div class="d-flex justify-content-center">{!! $product->links('pagination::bootstrap-5') !!}</div>
     </div>
 @endsection
